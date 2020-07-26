@@ -56,7 +56,12 @@ function Dashboard(props) {
 					<VerifiedUserOutlined />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-					Hello { firebase.getCurrentUsername() }
+				    Hello
+					try{
+					  firebase.getCurrentUsername() 
+                    }catch(error){
+						console.log("error")
+					}
 				</Typography>
                 {
                 /*<Typography component="h1" variant="h5">
