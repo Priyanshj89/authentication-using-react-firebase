@@ -42,7 +42,6 @@ function Register(props) {
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [confirmPassword, setConfirmPassword] = useState('')
 	//const [quote, setQuote] = useState('')
 
 	return (
@@ -66,10 +65,6 @@ function Register(props) {
 					<FormControl margin="normal" required fullWidth>
 						<InputLabel htmlFor="password">Password</InputLabel>
 						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)}  />
-					</FormControl>
-					<FormControl margin="normal" required fullWidth>
-						<InputLabel htmlFor="confirmPassword" >Confirm Password</InputLabel>
-						<Input name="confirmPassword" type="password" id="confirmPassword" autoComplete="off" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}  />
 					</FormControl>
                     
 					{/*<FormControl margin="normal" required fullWidth>
@@ -105,17 +100,9 @@ function Register(props) {
 
 	async function onRegister() {
 		try {
-			if(password == confirmPassword)
-			{
-				await firebase.register(name, email, password)
+			await firebase.register(name, email, password)
 			//await firebase.addQuote(quote)
 			props.history.replace('/dashboard')
-			}
-			else
-			{
-				alert('Confirm password does not match password')
-				return null;
-			}
 		} catch(error) {
 			alert(error.message)
 		}

@@ -3,9 +3,7 @@ import { Typography, Paper, Avatar, CircularProgress, Button } from '@material-u
 import VerifiedUserOutlined from '@material-ui/icons/VerifiedUserOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 import firebase from '../firebase'
-import { withRouter, useHistory } from 'react-router-dom'
-
-
+import { withRouter } from 'react-router-dom'
 
 const styles = theme => ({
 	main: {
@@ -37,10 +35,8 @@ const styles = theme => ({
 
 function Dashboard(props) {
 	const { classes } = props
-	const history = useHistory();
 
-
-	if(!firebase.getCurrentUseremail()) {
+	if(!firebase.getCurrentUsername()) {
 		// not logged in
 		alert('Please login first')
 		props.history.replace('/login')
@@ -82,9 +78,8 @@ function Dashboard(props) {
 	)
 
 	async function logout() {
-
 		await firebase.logout()
-		history.push('/')	
+		props.history.push('/')
 	}
 }
 
