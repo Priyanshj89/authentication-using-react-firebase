@@ -72,6 +72,16 @@ function Register(props) {
 						<Input name="quote" type="text" id="quote" autoComplete="off" value={quote} onChange={e => setQuote(e.target.value)}  />
                        </FormControl>*/
                     }
+					<Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="secondary"
+                        component={Link}
+                        to="/resetPassword"
+                        className={classes.submit}>
+                        Forgot Password
+                    </Button>
 
 					<Button
 						type="submit"
