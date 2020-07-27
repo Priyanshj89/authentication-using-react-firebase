@@ -65,16 +65,7 @@ function SignIn(props) {
 						<InputLabel htmlFor="password">Password</InputLabel>
 						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
 					</FormControl>
-					<Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-						color="secondary"
-						onClick={resetPassword}
-                        className={classes.submit}>
-                        Forgot Password
-                    </Button>
-					<Button
+						<Button
 						type="submit"
 						fullWidth
 						variant="contained"
@@ -83,6 +74,15 @@ function SignIn(props) {
 						className={classes.submit}>
 						Sign in
           			</Button>
+					  <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+						color="secondary"
+						onClick={resetPassword}
+                        className={classes.submit}>
+                        Forgot Password
+                    </Button>
 					<Button
 						type="submit"
 						fullWidth

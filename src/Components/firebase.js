@@ -49,6 +49,16 @@ const firebaseConfig = {
         return this.auth.currentUser && this.auth.currentUser.email
 	}
 
+	isAuthenticated() {
+		if(this.auth.currentUser)
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 }
 
 export default new Firebase()

@@ -3,6 +3,7 @@ import { Typography, Paper, Avatar, Button } from '@material-ui/core'
 import VerifiedUserOutlined from '@material-ui/icons/VerifiedUserOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Link } from 'react-router-dom'
+import firebase from '../firebase'
 
 const styles = theme => ({
 	main: {
@@ -34,7 +35,9 @@ const styles = theme => ({
 
 function HomePage(props) {
 	const { classes } = props
+	const yo = {
 
+	}
 	return (
 		<main className={classes.main}>
 			<Paper className={classes.paper}>
@@ -48,6 +51,7 @@ function HomePage(props) {
 					Welcome to MindTalk WebApp
 					<br></br>
 				</Typography>
+				 {!firebase.isAuthenticated() ?
 				<Button
 					type="submit"
 					fullWidth
@@ -57,7 +61,11 @@ function HomePage(props) {
 					to="/register"
 					className={classes.submit}>
 					Register
-          		</Button>
+				  </Button> 
+				  :
+				  <br></br>
+				   }  
+				   { !firebase.isAuthenticated() ?
 				<Button
 					type="submit"
 					fullWidth
@@ -67,7 +75,8 @@ function HomePage(props) {
 					to="/login"
 					className={classes.submit}>
 					Login
-          		</Button>
+				  </Button>
+                 :
 				<Button
 					type="submit"
 					fullWidth
@@ -78,6 +87,7 @@ function HomePage(props) {
 					className={classes.submit}>
 					Dashboard
           		</Button>
+				  }
 			</Paper>
 		</main>
 	)
