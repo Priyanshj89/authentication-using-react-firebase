@@ -4,6 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Link, withRouter } from 'react-router-dom'
 import firebase from '../firebase'
+import 'firebase/auth'
 
 const styles = theme => ({
 	main: {
@@ -39,7 +40,7 @@ const styles = theme => ({
 
 function SignIn(props) {
 	const { classes } = props
-
+	
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
@@ -61,6 +62,7 @@ function SignIn(props) {
 						<InputLabel htmlFor="password">Password</InputLabel>
 						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
 					</FormControl>
+					
 					<Button
 						type="submit"
 						fullWidth
@@ -85,6 +87,8 @@ function SignIn(props) {
 		</main>
 	)
 
+	
+
 	async function login() {
 		try {
 			await firebase.login(email, password)
@@ -93,6 +97,8 @@ function SignIn(props) {
 			alert(error.message)
 		}
 	}
+
+	
 }
 
 export default withRouter(withStyles(styles)(SignIn))
