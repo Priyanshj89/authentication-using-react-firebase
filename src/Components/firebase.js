@@ -47,7 +47,7 @@ const firebaseConfig = {
 
 	getCurrentUseremail() {
         return this.auth.currentUser && this.auth.currentUser.email
-    }
+	}
 
 }
 

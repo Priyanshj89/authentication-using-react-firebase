@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Typography, Paper, Avatar, Button, FormControl, Input, InputLabel } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, useHistory } from 'react-router-dom'
 import firebase from '../firebase'
 import fire from 'firebase'
 
@@ -41,6 +41,7 @@ const styles = theme => ({
 function SignIn(props) {
 
 	var auth = fire.auth();
+	const history = useHistory();
 	const { classes } = props
 
 	const [email, setEmail] = useState('')
@@ -99,19 +100,21 @@ function SignIn(props) {
 
 	function resetPassword() 
 	{
-		//console.log({email})	
-		if(email == "")
+		//console.log({email})
+
+		if(email === "")
 		{
 			alert('Please fill email address first')
 			return null;
 		}	
+		
 	 auth.sendPasswordResetEmail(email).then(function() {
 			//console.log("Hello")
 			//console.log({email})
 			alert('Email has been sent')
 		  }).catch(function(error) {
 			// An error happened.
-			alert('An error occured,pls try again')
+			alert('Please Check if your email is registered')
 		  });
 	}
 
