@@ -36,7 +36,7 @@ const styles = theme => ({
 function Dashboard(props) {
 	const { classes } = props
 
-	if(!firebase.getCurrentUsername()) {
+	if(!firebase.getCurrentUseremail()) {
 		// not logged in
 		alert('Please login first')
 		props.history.replace('/login')
@@ -56,12 +56,7 @@ function Dashboard(props) {
 					<VerifiedUserOutlined />
 				</Avatar>
 				<Typography component="h1" variant="h5">
-				    Hello
-					try{
-					  firebase.getCurrentUsername() 
-                    }catch(error){
-						console.log("error")
-					}
+					Hello { firebase.getCurrentUsername() }
 				</Typography>
                 {
                 /*<Typography component="h1" variant="h5">

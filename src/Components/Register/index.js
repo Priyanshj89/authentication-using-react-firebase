@@ -42,6 +42,7 @@ function Register(props) {
 	const [name, setName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [confirmPassword, setConfirmPassword] = useState('')
 	//const [quote, setQuote] = useState('')
 
 	return (
@@ -66,22 +67,18 @@ function Register(props) {
 						<InputLabel htmlFor="password">Password</InputLabel>
 						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)}  />
 					</FormControl>
+					<FormControl margin="normal" required fullWidth>
+                        <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
+                        <Input name="confirmPassword" type="password" id="confirmPassword" autoComplete="off" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                    </FormControl>
+
                     
 					{/*<FormControl margin="normal" required fullWidth>
 						<InputLabel htmlFor="quote">Your Favorite Quote</InputLabel>
 						<Input name="quote" type="text" id="quote" autoComplete="off" value={quote} onChange={e => setQuote(e.target.value)}  />
                        </FormControl>*/
                     }
-					<Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="secondary"
-                        component={Link}
-                        to="/resetPassword"
-                        className={classes.submit}>
-                        Forgot Password
-                    </Button>
+					
 
 					<Button
 						type="submit"
@@ -110,9 +107,16 @@ function Register(props) {
 
 	async function onRegister() {
 		try {
-			await firebase.register(name, email, password)
-			//await firebase.addQuote(quote)
-			props.history.replace('/dashboard')
+			if(password === confirmPassword){
+				await firebase.register(name, email, password)
+				//await firebase.addQuote(quote)
+				props.history.replace('/dashboard')
+				}
+				else{
+					alert('Confirm password does not match password')
+					return null;
+				}
+	
 		} catch(error) {
 			alert(error.message)
 		}

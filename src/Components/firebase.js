@@ -44,6 +44,11 @@ const firebaseConfig = {
 	getCurrentUsername() {
 		return this.auth.currentUser && this.auth.currentUser.displayName
 	}
+
+	getCurrentUseremail() {
+        return this.auth.currentUser && this.auth.currentUser.email
+    }
+
 }
 
 export default new Firebase()

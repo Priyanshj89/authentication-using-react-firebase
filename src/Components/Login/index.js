@@ -4,6 +4,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Link, withRouter } from 'react-router-dom'
 import firebase from '../firebase'
+import fire from 'firebase'
 
 const styles = theme => ({
 	main: {
@@ -38,6 +39,8 @@ const styles = theme => ({
 });
 
 function SignIn(props) {
+
+	var auth = fire.auth();
 	const { classes } = props
 
 	const [email, setEmail] = useState('')
@@ -62,6 +65,15 @@ function SignIn(props) {
 						<Input name="password" type="password" id="password" autoComplete="off" value={password} onChange={e => setPassword(e.target.value)} />
 					</FormControl>
 					<Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+						color="secondary"
+						onClick={resetPassword}
+                        className={classes.submit}>
+                        Forgot Password
+                    </Button>
+					<Button
 						type="submit"
 						fullWidth
 						variant="contained"
@@ -84,6 +96,24 @@ function SignIn(props) {
 			</Paper>
 		</main>
 	)
+
+	function resetPassword() 
+	{
+		//console.log({email})	
+		if(email == "")
+		{
+			alert('Please fill email address first')
+			return null;
+		}	
+	 auth.sendPasswordResetEmail(email).then(function() {
+			//console.log("Hello")
+			//console.log({email})
+			alert('Email has been sent')
+		  }).catch(function(error) {
+			// An error happened.
+			alert('An error occured,pls try again')
+		  });
+	}
 
 	async function login() {
 		try {
